@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // change to "mysql" for production
+  url      = env("DATABASE_URL")
+}
+
+model Expense {
+  id        Int      @id @default(autoincrement())
+  amount    Float
+  note      String?
+  category  Category
+  createdAt DateTime @default(now())
+  date      DateTime
+}
+
+enum Category {
+  Food
+  Transport
+  Bills
+  Entertainment
+  Shopping
+  Other
+}
